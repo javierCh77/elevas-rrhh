@@ -21,7 +21,9 @@ COPY . .
 
 # Build arguments para variables de entorno de build time
 ARG NEXT_PUBLIC_API_URL
+ARG OPENAI_API_KEY
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
 # Deshabilitar telemetry de Next.js
 ENV NEXT_TELEMETRY_DISABLED=1
