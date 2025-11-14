@@ -1,0 +1,153 @@
+# ===================================
+# ELEVAS RRHH - MONOREPO .gitignore
+# ===================================
+
+# ===================================
+# NODE & NPM
+# ===================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ===================================
+# ENVIRONMENT VARIABLES
+# ===================================
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+
+# Mantener archivos .example para referencia
+!.env.example
+!**/.env.example
+!**/.env.production.example
+
+# ===================================
+# NEXT.JS (Frontend & Landing)
+# ===================================
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# ===================================
+# NESTJS (Backend)
+# ===================================
+backend-rrhh/dist/
+backend-rrhh/build/
+
+# ===================================
+# TESTING
+# ===================================
+coverage/
+.nyc_output/
+*.lcov
+
+# ===================================
+# LOGS
+# ===================================
+*.log
+logs/
+*.log.*
+
+# ===================================
+# OS & SYSTEM FILES
+# ===================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ===================================
+# IDE & EDITORS
+# ===================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# ===================================
+# DOCKER
+# ===================================
+# Mantener Dockerfiles y docker-compose
+# Solo ignorar archivos temporales de Docker
+
+# ===================================
+# DATABASE
+# ===================================
+*.sqlite
+*.sqlite3
+*.db
+
+# ===================================
+# UPLOADS & USER CONTENT
+# ===================================
+backend-rrhh/uploads/*
+!backend-rrhh/uploads/.gitkeep
+
+# ===================================
+# BACKUPS
+# ===================================
+backups/
+*.backup
+*.bak
+*.sql
+*.sql.gz
+
+# ===================================
+# SSL CERTIFICATES
+# ===================================
+certbot/
+*.pem
+*.key
+*.crt
+*.csr
+
+# ===================================
+# MISC
+# ===================================
+.vercel
+.turbo
+nul
+
+# ===================================
+# TEMPORARY FILES
+# ===================================
+tmp/
+temp/
+*.tmp
+
+# ===================================
+# TYPESCRIPT
+# ===================================
+*.tsbuildinfo
+
+# ===================================
+# PRISMA (si se usa)
+# ===================================
+prisma/migrations/

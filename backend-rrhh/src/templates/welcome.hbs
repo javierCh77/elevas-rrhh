@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido al Sistema RRHH</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .content {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .credentials {
+            background: #e8f4fd;
+            border: 1px solid #b3d4fc;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #666;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎉 ¡Bienvenido!</h1>
+        <p>Sistema de Recursos Humanos</p>
+    </div>
+
+    <div class="content">
+        <h2>Hola {{name}},</h2>
+
+        <p>¡Bienvenido al Sistema de Recursos Humanos! Tu cuenta ha sido creada exitosamente.</p>
+
+        <div class="credentials">
+            <h3>📋 Tus credenciales de acceso:</h3>
+            <p><strong>Email:</strong> {{email}}</p>
+            <p><strong>Contraseña temporal:</strong> <code>{{temporaryPassword}}</code></p>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="{{loginUrl}}" class="button">Acceder al Sistema</a>
+        </div>
+
+        <div class="warning">
+            <strong>🔒 Importante - Seguridad:</strong>
+            <ul>
+                <li>Cambia tu contraseña temporal después del primer inicio de sesión</li>
+                <li>Usa una contraseña segura (mínimo 8 caracteres)</li>
+                <li>No compartas tus credenciales con nadie</li>
+                <li>Mantén tu información de perfil actualizada</li>
+            </ul>
+        </div>
+
+        <h3>🚀 Próximos pasos:</h3>
+        <ol>
+            <li>Inicia sesión con las credenciales proporcionadas</li>
+            <li>Completa tu perfil personal</li>
+            <li>Cambia tu contraseña temporal</li>
+            <li>Explora las funcionalidades del sistema</li>
+        </ol>
+
+        <p>Si tienes alguna pregunta o necesitas ayuda, no dudes en contactar al equipo de soporte.</p>
+
+        <p>¡Que tengas un excelente día!</p>
+
+        <p>Saludos,<br>
+        <strong>Equipo de Recursos Humanos</strong></p>
+    </div>
+
+    <div class="footer">
+        <p>Este email fue enviado automáticamente. Por favor, no respondas a este mensaje.</p>
+        <p>© 2024 Sistema RRHH. Todos los derechos reservados.</p>
+    </div>
+</body>
+</html>

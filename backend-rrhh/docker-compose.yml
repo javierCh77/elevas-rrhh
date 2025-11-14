@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: elevas-backend-postgres
+    environment:
+      POSTGRES_DB: elevas_hr
+      POSTGRES_USER: elevas_user
+      POSTGRES_PASSWORD: elevas_pass123
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "3034:5432"
+    volumes:
+      - postgres_backend_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U elevas_user -d elevas_hr"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_backend_data:
+    name: elevas_backend_postgres_data
