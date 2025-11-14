@@ -1,21 +1,3 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Contacto",
-  description: "Contáctanos para transformar tu gestión de recursos humanos. Estamos ubicados en Buenos Aires, Argentina. Solicita una demo o consulta sobre nuestros servicios de reclutamiento con IA.",
-  keywords: ["contacto elevas", "consultoría RRHH", "demo elevas", "contacto recursos humanos", "Buenos Aires"],
-  openGraph: {
-    title: "Contacto | Elevas - Transformamos RRHH con IA",
-    description: "Contáctanos para una demo personalizada de nuestros servicios de reclutamiento y gestión de talento con IA",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contacto | Elevas - Transformamos RRHH con IA",
-    description: "Contáctanos para una demo personalizada de nuestros servicios de reclutamiento y gestión de talento con IA",
-  },
-};
-
 "use client";
 
 import { useState } from "react";

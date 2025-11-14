@@ -1,21 +1,3 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Únete a Nuestro Equipo",
-  description: "Descubre oportunidades de carrera en Elevas. Trabajá con las últimas tecnologías en IA y automatización de RRHH. Formá parte de un equipo que transforma organizaciones y vidas.",
-  keywords: ["trabajar en elevas", "empleos RRHH", "carreras tecnología", "trabajo IA", "empleos Buenos Aires", "tech jobs Argentina"],
-  openGraph: {
-    title: "Únete a Nuestro Equipo | Elevas Careers",
-    description: "Descubre oportunidades de carrera en Elevas. Trabajá con IA y automatización en RRHH.",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Únete a Nuestro Equipo | Elevas Careers",
-    description: "Descubre oportunidades de carrera en Elevas. Trabajá con IA y automatización en RRHH.",
-  },
-};
-
 "use client"
 
 import { useState } from "react"
