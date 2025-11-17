@@ -34,6 +34,9 @@ RUN npm ci --only=production && npm cache clean --force
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
 
+# Copiar archivo .env.production
+COPY .env.production .env
+
 # Crear directorio para uploads
 RUN mkdir -p /app/uploads
 

@@ -3,10 +3,6 @@ import OpenAI from 'openai'
 import type { ChatCompletionMessageParam } from 'openai/resources'
 import { rateLimiters } from '@/lib/rate-limit'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
-
 const SYSTEM_PROMPT = `Soy **EVA**, el agente de inteligencia artificial de Elevas Consulting, especializada en recursos humanos.
 Mi nombre es EVA (derivado de ELEVAs) y mi misión es atender a potenciales clientes, entender sus necesidades específicas y guiar la conversación hacia un cierre comercial, transmitiendo **calidez y humanidad**.
 
@@ -108,6 +104,11 @@ Solo úsala cuando:
 
 export async function POST(req: NextRequest) {
   try {
+    // Inicializar OpenAI dentro de la función para evitar errores en build time
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+
     // Rate limiting: 10 requests por minuto
     const rateLimitResult = rateLimiters.chat.check(req);
 
