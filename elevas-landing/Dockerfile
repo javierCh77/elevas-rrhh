@@ -5,15 +5,24 @@
 FROM node:20-alpine AS deps
 WORKDIR /app
 
+# Actualizar npm y deshabilitar avisos
+RUN npm install -g npm@latest && \
+    npm config set fund false && \
+    npm config set audit false
+
 # Copiar package files
 COPY package.json package-lock.json ./
 
 # Instalar dependencias (incluye devDependencies para el build)
-RUN npm ci
+RUN npm ci --silenpt
 
 # Stage 2: Builder
 FROM node:20-alpine AS builder
 WORKDIR /app
+
+# Deshabilitar avisos de npm
+RUN npm config set fund false && \
+    npm config set audit false
 
 # Copiar dependencias del stage anterior
 COPY --from=deps /app/node_modules ./node_modules
@@ -29,7 +38,7 @@ ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # Build de producción
-RUN npm run build
+RUN npm run build --silent
 
 # Stage 3: Runner (imagen final)
 FROM node:20-alpine AS runner
