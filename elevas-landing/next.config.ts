@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
   // Output standalone para Docker
   output: 'standalone',
 
+  // Variables de entorno (server-side)
+  env: {
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+  },
+
   // Compresión
   compress: true,
 
