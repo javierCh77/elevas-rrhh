@@ -107,9 +107,13 @@ export default function AIChatDemo({ embedded = false }: AIChatDemoProps) {
     }
   }, [messages])
 
+  const generateId = () => {
+    return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+  }
+
   const addBotMessage = (content: string, showContactButton?: boolean) => {
     const botMessage: Message = {
-      id: crypto.randomUUID() + "-bot",
+      id: generateId() + "-bot",
       content,
       isBot: true,
       timestamp: new Date(),
@@ -120,7 +124,7 @@ export default function AIChatDemo({ embedded = false }: AIChatDemoProps) {
 
   const addUserMessage = (content: string) => {
     const userMessage: Message = {
-      id: crypto.randomUUID() + "-user",
+      id: generateId() + "-user",
       content,
       isBot: false,
       timestamp: new Date()
