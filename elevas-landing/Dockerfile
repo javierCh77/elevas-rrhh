@@ -14,7 +14,7 @@ RUN npm install -g npm@latest && \
 COPY package.json package-lock.json ./
 
 # Instalar dependencias (incluye devDependencies para el build)
-RUN npm ci --silenpt
+RUN npm ci --silent
 
 # Stage 2: Builder
 FROM node:20-alpine AS builder
@@ -53,14 +53,14 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
-# Copiar archivo .env.production como .env
-COPY .env.production .env
-
-# Cambiar ownership
+# Cambiar ownership ANTES de copiar .env
 RUN chown -R nextjs:nodejs /app
 
 # Cambiar a usuario no-root
 USER nextjs
+
+# Copiar archivo .env.production como .env con el usuario correcto
+COPY --chown=nextjs:nodejs .env.production .env
 
 # Exponer puerto
 EXPOSE 3002
