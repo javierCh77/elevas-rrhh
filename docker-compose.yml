@@ -72,6 +72,7 @@ services:
       dockerfile: Dockerfile
       args:
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.elevas-app.com}
+        OPENAI_API_KEY: ${OPENAI_API_KEY}
     container_name: elevas-frontend
     restart: unless-stopped
     environment:
@@ -79,6 +80,7 @@ services:
       PORT: 3001
       HOSTNAME: "0.0.0.0"
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.elevas-app.com}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
     ports:
       - "3001:3001"
     networks:
@@ -93,6 +95,7 @@ services:
       dockerfile: Dockerfile
       args:
         NEXT_PUBLIC_BACKEND_URL: ${NEXT_PUBLIC_BACKEND_URL:-https://api.elevas-app.com}
+        OPENAI_API_KEY: ${OPENAI_API_KEY}
     container_name: elevas-landing
     restart: unless-stopped
     environment:
