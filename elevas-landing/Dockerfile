@@ -1,5 +1,5 @@
 # Dockerfile para Elevas Landing (Next.js)
-# Build optimizado para producción
+# Build optimizado para producción con soporte completo para .env
 
 # Stage 1: Dependencies
 FROM node:20-alpine AS deps
@@ -28,12 +28,6 @@ RUN npm config set fund false && \
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Build arguments para variables de entorno de build time
-ARG NEXT_PUBLIC_BACKEND_URL
-ARG OPENAI_API_KEY
-ENV NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
-ENV OPENAI_API_KEY=${OPENAI_API_KEY}
-
 # Deshabilitar telemetry de Next.js
 ENV NEXT_TELEMETRY_DISABLED=1
 
@@ -44,25 +38,24 @@ RUN npm run build --silent
 FROM node:20-alpine AS runner
 WORKDIR /app
 
-# Instalar dotenv-cli para cargar variables del .env
-RUN npm install -g dotenv-cli
-
 # Crear usuario no-root para seguridad
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
-# Copiar archivos necesarios
+# Copiar archivos necesarios del build
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
-# Copiar node_modules de openai del builder
+# Copiar dependencias críticas de OpenAI
 COPY --from=builder /app/node_modules/openai ./node_modules/openai
+COPY --from=builder /app/node_modules/formdata-node ./node_modules/formdata-node
+COPY --from=builder /app/node_modules/web-streams-polyfill ./node_modules/web-streams-polyfill
 
-# Copiar archivo .env.production
-COPY .env.production .env.production
+# Copiar archivo .env
+COPY .env ./
 
-# Cambiar ownership de TODOS los archivos
+# Cambiar ownership de todos los archivos
 RUN chown -R nextjs:nodejs /app
 
 # Cambiar a usuario no-root
@@ -71,10 +64,11 @@ USER nextjs
 # Exponer puerto
 EXPOSE 3002
 
+# Variables de entorno
 ENV PORT=3002
 ENV NODE_ENV=production
 ENV HOSTNAME="0.0.0.0"
 ENV NODE_OPTIONS="--experimental-global-webcrypto"
 
-# Comando de inicio con dotenv para cargar el .env.production
-CMD ["sh", "-c", "export $(cat .env.production | xargs) && node server.js"]
+# Comando de inicio
+CMD ["node", "server.js"]

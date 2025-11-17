@@ -76,7 +76,9 @@
       "Bash(cmd //c \"del c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\backend-rrhh\\.env 2>nul & del c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\backend-rrhh\\.env.example 2>nul & del c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\elevas-landing\\.env 2>nul & del c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\elevas-landing\\.env.example 2>nul & del c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\frontend-rrhh\\.env.local 2>nul & del c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\frontend-rrhh\\.env.example 2>nul & echo Archivos eliminados exitosamente\")",
       "Bash(cmd //c \"del deploy-backend.sh deploy-frontend.sh deploy-all.sh deploy-landing.sh check-config.sh DEPLOYMENT.md ARQUITECTURA.md README-DEPLOYMENT.md 2>nul & echo Archivos eliminados\")",
       "Bash(cmd //c \"dir /b /s nginx scripts 2>nul\")",
-      "Bash(cmd //c \"rmdir /s /q nginx scripts 2>nul & del start.sh stop.sh 2>nul & echo Limpieza completa\")"
+      "Bash(cmd //c \"rmdir /s /q nginx scripts 2>nul & del start.sh stop.sh 2>nul & echo Limpieza completa\")",
+      "Bash(cmd /c \"dir /b c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\elevas-landing\")",
+      "Bash(cmd /c \"dir /b c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\elevas-landing\\.env*\")"
     ],
     "deny": [],
     "ask": []

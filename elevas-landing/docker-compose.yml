@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  elevas-landing:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - elevas-network
+
+networks:
+  elevas-network:
+    driver: bridge
