@@ -78,7 +78,10 @@
       "Bash(cmd //c \"dir /b /s nginx scripts 2>nul\")",
       "Bash(cmd //c \"rmdir /s /q nginx scripts 2>nul & del start.sh stop.sh 2>nul & echo Limpieza completa\")",
       "Bash(cmd /c \"dir /b c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\elevas-landing\")",
-      "Bash(cmd /c \"dir /b c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\elevas-landing\\.env*\")"
+      "Bash(cmd /c \"dir /b c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\elevas-landing\\.env*\")",
+      "Bash(cmd /c \"del c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\elevas-landing\\nginx.conf c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\elevas-landing\\setup-nginx.sh c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\elevas-landing\\setup-ssl.sh c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\elevas-landing\\DEPLOYMENT.md 2>nul & echo Archivos eliminados\")",
+      "Bash(cmd /c \"dir /b c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\backend-rrhh\\.env*\")",
+      "Bash(cmd /c \"dir /b c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\frontend-rrhh\\.env*\")"
     ],
     "deny": [],
     "ask": []

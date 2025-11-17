@@ -22,8 +22,8 @@ build
 # Debug
 *.log
 
-# Local env files
-.env
+# Local env files (mantener .env para copiar al contenedor)
+# .env
 .env.local
 .env.development
 .env.test

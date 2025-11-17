@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  frontend-rrhh:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - elevas-network
+
+networks:
+  elevas-network:
+    driver: bridge
