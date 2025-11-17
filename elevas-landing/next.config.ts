@@ -1,30 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Producción optimizada
-  reactStrictMode: true,
-  poweredByHeader: false,
-
   // Output standalone para Docker
   output: 'standalone',
 
-  // Variables de entorno (server-side)
-  env: {
-    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+  // Ignorar TODOS los errores durante build
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
 
   // Compresión
   compress: true,
-
-  // Ignorar errores de ESLint durante el build (temporal)
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-
-  // Ignorar errores de TypeScript durante el build (temporal)
-  typescript: {
-    ignoreBuildErrors: true,
-  },
 
   // Optimización de imágenes
   images: {
