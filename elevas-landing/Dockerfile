@@ -46,11 +46,7 @@ RUN addgroup --system --gid 1001 nodejs && \
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
-
-# Copiar dependencias críticas de OpenAI
-COPY --from=builder /app/node_modules/openai ./node_modules/openai
-COPY --from=builder /app/node_modules/formdata-node ./node_modules/formdata-node
-COPY --from=builder /app/node_modules/web-streams-polyfill ./node_modules/web-streams-polyfill
+COPY --from=builder /app/node_modules ./node_modules
 
 # Copiar archivo .env
 COPY .env ./
