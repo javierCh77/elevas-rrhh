@@ -44,6 +44,9 @@ RUN npm run build --silent
 FROM node:20-alpine AS runner
 WORKDIR /app
 
+# Instalar dotenv-cli para cargar variables del .env
+RUN npm install -g dotenv-cli
+
 # Crear usuario no-root para seguridad
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
@@ -53,14 +56,14 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
-# Cambiar ownership ANTES de copiar .env
+# Copiar archivo .env.production
+COPY .env.production .env.production
+
+# Cambiar ownership de TODOS los archivos
 RUN chown -R nextjs:nodejs /app
 
 # Cambiar a usuario no-root
 USER nextjs
-
-# Copiar archivo .env.production como .env con el usuario correcto
-COPY --chown=nextjs:nodejs .env.production .env
 
 # Exponer puerto
 EXPOSE 3002
@@ -69,5 +72,5 @@ ENV PORT=3002
 ENV NODE_ENV=production
 ENV HOSTNAME="0.0.0.0"
 
-# Comando de inicio
-CMD ["node", "server.js"]
+# Comando de inicio con dotenv para cargar el .env.production
+CMD ["sh", "-c", "export $(cat .env.production | xargs) && node server.js"]
