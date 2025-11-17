@@ -44,8 +44,8 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
-# Copiar archivo .env.production
-COPY .env.production .env.production
+# Copiar archivo .env.production como .env
+COPY .env.production .env
 
 # Cambiar ownership
 RUN chown -R nextjs:nodejs /app

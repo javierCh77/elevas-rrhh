@@ -37,6 +37,7 @@ fi
 
 # Ejecutar contenedor
 echo "🚀 Iniciando contenedor..."
+cd ..
 docker run -d \
   --name $CONTAINER_NAME \
   --restart unless-stopped \
@@ -46,6 +47,7 @@ docker run -d \
   -e PORT=$PORT \
   -e HOSTNAME="0.0.0.0" \
   -e NEXT_PUBLIC_BACKEND_URL=https://api.elevas-app.com \
+  --env-file elevas-landing/.env.production \
   $IMAGE_NAME
 
 if [ $? -eq 0 ]; then
