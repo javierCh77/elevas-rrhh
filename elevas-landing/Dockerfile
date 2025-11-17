@@ -56,6 +56,9 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
+# Copiar node_modules de openai del builder
+COPY --from=builder /app/node_modules/openai ./node_modules/openai
+
 # Copiar archivo .env.production
 COPY .env.production .env.production
 
@@ -71,6 +74,7 @@ EXPOSE 3002
 ENV PORT=3002
 ENV NODE_ENV=production
 ENV HOSTNAME="0.0.0.0"
+ENV NODE_OPTIONS="--experimental-global-webcrypto"
 
 # Comando de inicio con dotenv para cargar el .env.production
 CMD ["sh", "-c", "export $(cat .env.production | xargs) && node server.js"]
