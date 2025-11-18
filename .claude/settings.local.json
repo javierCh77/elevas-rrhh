@@ -94,7 +94,8 @@
       "Bash(timeout 30 echo:*)",
       "Bash(timeout 60 echo:*)",
       "Bash(timeout 90 echo:*)",
-      "Bash(timeout 120 echo:*)"
+      "Bash(timeout 120 echo:*)",
+      "Bash(docker-compose build:*)"
     ],
     "deny": [],
     "ask": []
