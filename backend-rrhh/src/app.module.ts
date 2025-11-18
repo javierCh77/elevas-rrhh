@@ -12,6 +12,7 @@ import { EvaModule } from './eva/eva.module';
 import { InterviewsModule } from './interviews/interviews.module';
 import { WhatsAppModule } from './whatsapp/whatsapp.module';
 import { AnalyticsModule } from './analytics/analytics.module';
+import { HealthController } from './health/health.controller';
 
 @Module({
   imports: [
@@ -63,6 +64,6 @@ import { AnalyticsModule } from './analytics/analytics.module';
     WhatsAppModule,
     AnalyticsModule,
   ],
-
+  controllers: [HealthController],
 })
 export class AppModule {}

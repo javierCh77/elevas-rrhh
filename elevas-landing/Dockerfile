@@ -12,7 +12,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 # ========================================
 # Stage 2: Builder
@@ -38,6 +38,10 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # Build the application
 RUN npm run build
 
+# Verify standalone build was created
+RUN ls -la .next/standalone && \
+    test -f .next/standalone/server.js || (echo "ERROR: server.js not found!" && exit 1)
+
 # ========================================
 # Stage 3: Production Runner
 # ========================================
@@ -49,17 +53,24 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Install dumb-init and wget for healthcheck
+RUN apk add --no-cache dumb-init wget
+
 # Create non-root user
 RUN addgroup -g 1001 -S nodejs && \
     adduser -S nextjs -u 1001
 
-# Copy necessary files from builder
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/package*.json ./
-
-# Copy built application
+# Copy the entire standalone build (includes node_modules and server.js)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+
+# Copy static files
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+# Copy public folder if exists
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+
+# Verify server.js exists in the final container
+RUN test -f server.js || (echo "ERROR: server.js not found in runner stage!" && ls -la && exit 1)
 
 # Switch to non-root user
 USER nextjs
@@ -69,10 +80,12 @@ EXPOSE 3002
 
 # Environment variable for port
 ENV PORT=3002
+ENV HOSTNAME=0.0.0.0
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=40s \
-  CMD node -e "require('http').get('http://localhost:3002', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})" || exit 1
+# Health check - use wget instead of node http module
+HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:3002 || exit 1
 
-# Start application
+# Start application with dumb-init for proper signal handling
+ENTRYPOINT ["dumb-init", "--"]
 CMD ["node", "server.js"]

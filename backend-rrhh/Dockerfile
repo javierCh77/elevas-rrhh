@@ -26,8 +26,8 @@ FROM node:20-alpine AS production
 # Set working directory
 WORKDIR /app
 
-# Install dumb-init for proper signal handling
-RUN apk add --no-cache dumb-init
+# Install dumb-init for proper signal handling and wget for healthcheck
+RUN apk add --no-cache dumb-init wget
 
 # Create non-root user for security
 RUN addgroup -g 1001 -S nodejs && \
@@ -53,9 +53,9 @@ USER nestjs
 # Expose port
 EXPOSE 3000
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=40s \
-  CMD node -e "require('http').get('http://localhost:3000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})" || exit 1
+# Health check - use wget instead of node http module
+HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1
 
 # Start application with dumb-init for proper signal handling
 ENTRYPOINT ["dumb-init", "--"]
