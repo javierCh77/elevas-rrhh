@@ -18,7 +18,7 @@ import { AnalyticsModule } from './analytics/analytics.module';
     // Configuration Module
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env',
+      envFilePath: '../.env', // Points to root .env file
     }),
 
     // Database Module

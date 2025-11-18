@@ -1,0 +1,27 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+.claude
+
+# Documentation
+*.md
+README.md
+
+# Environment files (will be injected via docker-compose)
+.env
+.env.*
+
+# Node modules in each project (each Dockerfile handles its own)
+**/node_modules
+
+# Logs
+**/*.log
+logs
+
+# OS
+.DS_Store
+Thumbs.db
