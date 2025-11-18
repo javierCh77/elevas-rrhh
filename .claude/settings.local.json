@@ -95,7 +95,13 @@
       "Bash(timeout 60 echo:*)",
       "Bash(timeout 90 echo:*)",
       "Bash(timeout 120 echo:*)",
-      "Bash(docker-compose build:*)"
+      "Bash(docker-compose build:*)",
+      "Bash(docker-compose restart:*)",
+      "Bash(curl:*)",
+      "Bash(timeout 15 echo:*)",
+      "Bash(cmd /c \"copy .env .env.production\")",
+      "Bash(cmd /c \"del docker-start.bat docker-start.sh docker-stop.bat docker-stop.sh docker-logs.bat docker-logs.sh docker-restart.bat docker-restart.sh 2>nul & echo Archivos eliminados\")",
+      "Bash(cmd /c \"for %f in (docker-start.bat docker-start.sh docker-stop.bat docker-stop.sh docker-logs.bat docker-logs.sh docker-restart.bat docker-restart.sh) do del %f 2>nul\")"
     ],
     "deny": [],
     "ask": []

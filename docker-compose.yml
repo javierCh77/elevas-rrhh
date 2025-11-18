@@ -52,7 +52,10 @@ services:
       - MAIL_USER=${MAIL_USER}
       - MAIL_PASSWORD=${MAIL_PASSWORD}
       - MAIL_FROM=${MAIL_FROM}
-      - CORS_ORIGIN=${CORS_ORIGIN}
+      # Production (VPS):
+      - CORS_ORIGIN=https://elevas-app.com,https://elevasconsulting.com,https://api.elevas-app.com
+      # Development (local): Descomentar y comentar la línea de arriba
+      # - CORS_ORIGIN=http://localhost:3001,http://localhost:3002,http://localhost:3000
     volumes:
       - backend_uploads:/app/uploads
     depends_on:

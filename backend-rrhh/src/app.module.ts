@@ -32,7 +32,7 @@ import { AnalyticsModule } from './analytics/analytics.module';
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
         autoLoadEntities: true,
-        synchronize: configService.get('NODE_ENV') === 'development',
+        synchronize: configService.get('DB_SYNCHRONIZE') === 'true',
         logging: configService.get('NODE_ENV') === 'development',
         ssl: configService.get('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
       }),

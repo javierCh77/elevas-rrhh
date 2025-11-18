@@ -41,12 +41,17 @@ async function bootstrap() {
   }));
 
   // CORS - Configure based on environment
-  const corsOrigins = isProduction
-    ? configService.get('CORS_ORIGIN')?.split(',') || [
+  const corsOrigin = configService.get('CORS_ORIGIN');
+  const corsOrigins = corsOrigin
+    ? corsOrigin.split(',').map((origin: string) => origin.trim())
+    : [
         configService.get('FRONTEND_URL'),
-        configService.get('LANDING_URL')
-      ]
-    : true; // Allow all in development
+        configService.get('LANDING_URL'),
+        'http://localhost:3001',
+        'http://localhost:3002'
+      ];
+
+  console.log('🔐 CORS Origins:', corsOrigins);
 
   app.enableCors({
     origin: corsOrigins,
