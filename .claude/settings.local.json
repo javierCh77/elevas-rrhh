@@ -85,7 +85,16 @@
       "Bash(cmd /c \"dir /b c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\")",
       "Bash(cmd /c \"dir /b c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\backend-rrhh\")",
       "Bash(cmd /c \"dir /b c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\frontend-rrhh\")",
-      "Bash(cmd /c \"dir /b c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\docker*\")"
+      "Bash(cmd /c \"dir /b c:\\Users\\usuario\\Desktop\\startUP\\elevas-rhh\\docker*\")",
+      "Bash(docker-compose ps:*)",
+      "Bash(docker-compose logs:*)",
+      "Bash(docker-compose down:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(timeout 10 echo:*)",
+      "Bash(timeout 30 echo:*)",
+      "Bash(timeout 60 echo:*)",
+      "Bash(timeout 90 echo:*)",
+      "Bash(timeout 120 echo:*)"
     ],
     "deny": [],
     "ask": []
