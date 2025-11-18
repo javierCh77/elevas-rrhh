@@ -34,7 +34,7 @@ import { AnalyticsModule } from './analytics/analytics.module';
         autoLoadEntities: true,
         synchronize: configService.get('NODE_ENV') === 'development',
         logging: configService.get('NODE_ENV') === 'development',
-        ssl: configService.get('NODE_ENV') === 'production' ? { rejectUnauthorized: false } : false,
+        ssl: configService.get('DB_SSL') === 'true' ? { rejectUnauthorized: false } : false,
       }),
       inject: [ConfigService],
     }),
